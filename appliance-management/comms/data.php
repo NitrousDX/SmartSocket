@@ -51,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':devCond' => $condition
             ]);
 
-            $stmt = $pdo->prepare("REPLACE INTO device_status (device_id, last_seen) VALUES (:deviceId, NOW()");
+            $stmt = $pdo->prepare("INSERT INTO device_status (device_Id, last_seen) VALUES (:deviceId, NOW())
+                ON DUPLICATE KEY UPDATE last_seen = NOW()");
             $stmt->execute([
                 ':deviceId' => $deviceSerial,
             ]);

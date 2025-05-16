@@ -103,13 +103,13 @@
                         <div class="app-info-wrapper">
                             <div class="infod">
                                 <label for="voltage">Voltage:</label>
-                                <input type="number" id="voltage" name="min-voltage" required>
-
+                                <input type="number" id="voltage" name="min-voltage" step="any" required>
+                                
                                 <label for="watts">Wattage:</label>
-                                <input type="number" id="watts" name="min-watts" required>
-
+                                <input type="number" id="watts" name="min-watts" step="any" required>
+                                
                                 <label for="current">Current:</label>
-                                <input type="number" id="current" name="min-current" required>
+                                <input type="number" id="current" name="min-current" step="any" required>
                             </div>
                             <div class="app-info">
                                 <label for="image">Appliance Image:</label>

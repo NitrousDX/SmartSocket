@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Failed to upload image.");
         }
 
+        //for saving rated data
         $stmt = $pdo->prepare("INSERT INTO appliances 
             (nameApp, 
              minVoltage, 
@@ -57,6 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':imagePath', $imagePath);
         $stmt->execute();
 
+        //adding device code to device_status, online | offline
+        $device_statusSql = $pdo->prepare("INSERT INTO device_status (device_id) VALUES (:device_id)");
+        $device_statusSql->bindParam(':device_id', $serialNumber);
+        $device_statusSql->execute();
+
         $tableName = preg_replace('/[^a-zA-Z0-9_]/', '_', $serialNumber); // Sanitize table name
         if (!empty($tableName)) {
             $createTableSQL = "CREATE TABLE IF NOT EXISTS `$tableName` (
@@ -64,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 powerReceived DECIMAL(6,2) NOT NULL,
                 voltageReceived DECIMAL(6,2) NOT NULL,
                 currentReceived DECIMAL(6,2) NOT NULL,
+                deviceCondition VARCHAR(50) NOT NULL,
                 timeReceived TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )";
             $pdo->exec($createTableSQL);

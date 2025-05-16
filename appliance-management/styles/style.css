@@ -89,7 +89,7 @@ body {
 
 .main-content {
     display: grid;
-    grid-template-rows: 70px auto auto 1fr;
+    grid-template-rows: 70px auto auto 1fr 30px;
 
     header {
         padding: 13px;

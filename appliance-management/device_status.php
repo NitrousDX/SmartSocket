@@ -22,7 +22,7 @@ if ($action === 'get_device_ids') {
 
         if ($row) {
             $last_seen = strtotime($row['last_seen']);
-            $online = (time() - $last_seen) < 3;
+            $online = (time() - $last_seen) < 5;
             echo json_encode(['online' => $online]);
         } else {
             echo json_encode(['online' => false]);

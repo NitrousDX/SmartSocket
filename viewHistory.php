@@ -82,7 +82,7 @@ if (isset($_POST['toHistory'])) {
     <div class="main-content">
         <div class="main-content-header">
             <div class="main-content-title">
-                <p>Device History</p>
+                <p>Device History for <?php echo $deviceName; ?></p>
             </div>
         </div>
 

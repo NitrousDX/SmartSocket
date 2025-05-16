@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
             $appliance = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
             if ($appliance) {
                 $serialNumber = $appliance['serialNumber'];
                 $tableName = preg_replace('/[^a-zA-Z0-9_]/', '_', $serialNumber);
@@ -22,6 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $dropTableSQL = "DROP TABLE IF EXISTS `$tableName`";
                 $pdo->exec($dropTableSQL);
 
+                $deleteStatusSql = $pdo->prepare("DELETE FROM device_status WHERE device_id = :id");
+                $deleteStatusSql->bindParam('id', $tableName);
+                $deleteStatusSql->execute();
 
                 header('Location: ../index.php?success=Appliance deleted successfully.');
             } else {

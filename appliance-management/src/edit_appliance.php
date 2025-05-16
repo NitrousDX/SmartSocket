@@ -21,11 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['appliance_id'])) {
     $name = trim($_POST['nameApp']);
     $serialNumber = trim($_POST['serialNumber']);
     $minVoltage = $_POST['minVoltage'] !== '' ? (float)$_POST['minVoltage'] : null;
-    $maxVoltage = $_POST['maxVoltage'] !== '' ? (float)$_POST['maxVoltage'] : null;
     $minWatts = $_POST['minWatts'] !== '' ? (float)$_POST['minWatts'] : null;
-    $maxWatts = $_POST['maxWatts'] !== '' ? (float)$_POST['maxWatts'] : null;
     $minCurrent = $_POST['minCurrent'] !== '' ? (float)$_POST['minCurrent'] : null;
-    $maxCurrent = $_POST['maxCurrent'] !== '' ? (float)$_POST['maxCurrent'] : null;
 
     if (empty($name) || empty($serialNumber)) {
         die("Error: Appliance Name and Serial Number are required.");
@@ -61,11 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['appliance_id'])) {
                     nameApp = :nameApp, 
                     serialNumber = :serialNumber, 
                     minVoltage = :minVoltage, 
-                    maxVoltage = :maxVoltage, 
                     minWatts = :minWatts, 
-                    maxWatts = :maxWatts, 
-                    minCurrent = :minCurrent, 
-                    maxCurrent = :maxCurrent";
+                    minCurrent = :minCurrent";
         if ($imagePath) {
             $sql .= ", imagePath = :imagePath";
         }
@@ -75,11 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['appliance_id'])) {
         $stmt->bindParam(':nameApp', $name);
         $stmt->bindParam(':serialNumber', $serialNumber);
         $stmt->bindParam(':minVoltage', $minVoltage);
-        $stmt->bindParam(':maxVoltage', $maxVoltage);
         $stmt->bindParam(':minWatts', $minWatts);
-        $stmt->bindParam(':maxWatts', $maxWatts);
         $stmt->bindParam(':minCurrent', $minCurrent);
-        $stmt->bindParam(':maxCurrent', $maxCurrent);
         if ($imagePath) {
             $stmt->bindParam(':imagePath', $imagePath);
         }
@@ -186,9 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['appliance_id'])) {
 
                             <label for="name">Appliance Name:</label>
                             <input type="text" id="name" name="nameApp" value="<?php echo htmlspecialchars($appliance['nameApp']); ?>" required>
-
-                            <label for="serial">Serial Number:</label>
-                            <input type="text" id="serial" name="serialNumber" value="<?php echo htmlspecialchars($appliance['serialNumber']); ?>" required>
                         </div>
 
                         <div class="divider"></div>
