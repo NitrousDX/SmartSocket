@@ -23,14 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pdo->exec($dropTableSQL);
 
 
-                header('Location: ../index.php?message=Appliance deleted successfully.');
+                header('Location: ../index.php?success=Appliance deleted successfully.');
             } else {
-                header('Location: ../index.php?message=No appliance found with that ID.');
+                header('Location: ../index.php?error=No appliance found with that ID.');
             }
         } catch (PDOException $e) {
-            echo "Error deleting appliance: " . $e->getMessage();
+            header("Location: ../index.php?error=Something wrong happened, try again");
         }
     } else {
-        header('Location: ../index.php?message=Appliance ID cannot be empty.');
+        header('Location: ../index.php?error=Appliance ID cannot be empty.');
     }
 }

@@ -86,11 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['appliance_id'])) {
         $stmt->bindParam(':id', $applianceId, PDO::PARAM_INT);
         $stmt->execute();
 
-        header("Location: ../src/views/appliance_list.php?message=Appliance updated successfully.");
+        header("Location: ../src/views/appliance_list.php?success=Appliance $name updated successfully.");
         exit;
     } catch (PDOException $e) {
-        error_log($e->getMessage(), 3, '../logs/errors.log');
-        die("An error occurred while updating the appliance. Please try again later.");
+       header("Location: ../src/views/appliance_list.php?error=Something wrong happened, try again.");
     }
 } else {
     die("Invalid request.");

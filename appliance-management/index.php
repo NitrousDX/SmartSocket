@@ -88,6 +88,24 @@ if (isset($_GET['message'])) {
             </div>
         </div>
 
+        <div class="show-message">
+            <p>
+                <?php if (isset($_GET['success'])) { ?>
+                    <span class="message-success">
+                        <?php echo htmlspecialchars($_GET['success']); ?>
+                    </span>
+                <?php } ?>
+            </p>
+
+            <p>
+                <?php if (isset($_GET['error'])) { ?>
+                    <span class="message-failed">
+                        <?php echo htmlspecialchars($_GET['error']); ?>
+                    </span>
+                <?php } ?>
+            </p>
+        </div>
+
         <header>
             <div class="main-content-title-sub">
                 Select an option from the menu to manage your appliances.

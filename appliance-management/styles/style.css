@@ -484,6 +484,20 @@ nav ul li a svg {
 
 }
 
+.message-success {
+    display: flex;
+    background-color: var(--valid);
+    justify-content: center;
+    font-weight: var(--bold);
+}
+
+.message-failed {
+    display: flex;
+    background-color: var(--warn);
+    justify-content: center;
+    font-weight: var(--bold);
+}
+
 .actions {
     display: flex;
     flex-direction: row;

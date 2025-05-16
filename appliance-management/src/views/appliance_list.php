@@ -9,13 +9,6 @@ try {
 }
 ?>
 
-<!-- Message Receiver -->
-<?php
-if (isset($_GET['message'])) {
-    $mes = $_GET['message'];
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,6 +78,23 @@ if (isset($_GET['message'])) {
             <div class="main-content-title">
                 <p>Appliance List</p>
             </div>
+        </div>
+
+        <div class="show-message">
+            <span>
+                <?php if (isset($_GET['success'])) { ?>
+                    <span class="message-success">
+                        <?php echo htmlspecialchars($_GET['success']); ?>
+                    </span>
+                <?php } ?>
+            </span>
+            <span>
+                <?php if (isset($_GET['error'])) { ?>
+                    <span class="message-failed">
+                        <?php echo htmlspecialchars($_GET['error']); ?>
+                    </span>
+                <?php } ?>
+            </span>
         </div>
 
         <div class="container-list">

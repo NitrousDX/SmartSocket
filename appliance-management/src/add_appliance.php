@@ -69,9 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pdo->exec($createTableSQL);
         }
 
-        header('Location: ../index.php?message=Appliance ' . urlencode($tableName) . ' added successfully.');
+        header('Location: ../index.php?success=Appliance ' . urlencode($tableName) . ' added successfully.');
     } catch (Exception $e) {
-        error_log($e->getMessage(), 3, '../logs/errors.log');
-        echo "An error occurred. Please try again later.";
+        header('Location: ../index.php?error=Something wrong happened, try again.');
     }
 }
